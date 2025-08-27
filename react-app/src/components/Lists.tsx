@@ -12,7 +12,7 @@ function Lists({data,onSelect}: Props) {
         onSelect?.(elemento);
     }
     return (
-    <ul className="list-group">
+    <ul className="list-group" >
         {data.map((elemento,i) =>(
             <li onClick={() => handleClick(i, elemento)} key={elemento} className= {`list-group-item ${index == i ? 'active' : ''}`}>{elemento}</li>
         ))}
