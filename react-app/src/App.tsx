@@ -1,6 +1,6 @@
-import Card, { CardBody } from "./components/Card";
-import List from './components/Lists';
-import Button, { ButtonAdditionSubstraction, ButtonChargeBody, ButtonChargingBody } from "./components/ButtonCharge";
+import Card, { CardBody } from "./components/Card/Card";
+import List from './components/List/Lists';
+import Button, { ButtonAdditionSubstraction, ButtonChargeBody, ButtonChargingBody } from "./components/ButtonCharge/ButtonCharge";
 import { useState } from "react";
 
 function App() {
@@ -39,9 +39,6 @@ function App() {
   <>
     <Card>
       <CardBody title="Hola mundo" text="Cuerpo del card" buttontext="Texto del boton"/>
-      {list.length !== 0 ?
-        <List data={list} onSelect={handleSelect}/>
-        : "No hay contenido por mostrar"}
       <Button>
         {
           isLoading === false
@@ -57,11 +54,14 @@ function App() {
           <ButtonAdditionSubstraction onClick={handleAdditionButton} textButton="Agregar minion"/>
           <ButtonAdditionSubstraction onClick={handleRemoveButton} textButton="Eliminar minion"/>
         </div>
+        {list.length !== 0 ?
         <List data={list} onSelect={handleSelect}/>
+        : "Noooooooo mis minions!!!!!"}
       </Button>
     </Card>
   </>
   );
 }
+
 
 export default App;

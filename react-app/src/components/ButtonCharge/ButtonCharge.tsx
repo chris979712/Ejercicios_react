@@ -1,5 +1,8 @@
 import { Fragment, ReactNode } from "react";
+import styles from "./ButtonCharge.module.css"
+import styled from "styled-components";
 
+const btn = styled.button;
 
 interface ButtonChargePropsChildren{
     children: ReactNode;
@@ -30,18 +33,17 @@ function Button(props: ButtonChargePropsChildren){
 
 export function ButtonAdditionSubstraction(props: ButtonAdditionSubstractionProps){
     const {textButton, onClick} = props;
+    const className = [
+        textButton === 'Agregar minion' 
+        ? styles.ButtonSubmitStyles
+        : styles.ButtonCancelStyles
+    ];
     return (
         <Fragment>
-            <button type="button" className="btn btn-primary"
-            onClick={onClick}
-            style={{
-                backgroundColor: textButton === 'Agregar minion' ? 'green' : 'red',
-                borderBlockColor: 'black',
-                height: '40px', 
-                width: '140px', 
-                fontSize: '0.9rem',
-                whiteSpace: 'normal'
-            }}>{textButton}</button>
+            <button type="button" 
+            className={className.join(" ")}
+            onClick={onClick}>
+                {textButton}</button>
         </Fragment>
     );
 }
@@ -50,12 +52,10 @@ export function ButtonChargeBody(props: ButtonChargeBodyProps){
     const {disabled = false, onClick} = props;
     return (
         <Fragment>
-            <button type="button" className="btn btn-primary" disabled={disabled}
+            <button type="button" 
+            className={styles.ButtonChargeStyle} disabled={disabled}
             onClick={onClick}
-            style={{
-                backgroundColor: 'green',
-                borderBlockColor: 'black'
-            }}>Enviar</button>
+            >Enviar</button>
         </Fragment>
     )
 }
@@ -64,12 +64,10 @@ export function ButtonChargingBody(props: ButtonChargeBodyProps){
     const {disabled = false} = props;
     return (
         <Fragment>
-            <button type="button" className="btn btn-secondary" disabled={disabled}
-            style={{
-                    backgroundColor: 'gray',
-                    borderBlockColor: 'black',
-                    
-                }}>Cargando...</button>
+            <button type="button" 
+            className={styles.ButtonChargingStyle} 
+            disabled={disabled}
+            >Cargando...</button>
         </Fragment>
     )
 }
