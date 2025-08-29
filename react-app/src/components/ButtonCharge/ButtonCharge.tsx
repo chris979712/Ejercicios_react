@@ -1,8 +1,5 @@
 import { Fragment, ReactNode } from "react";
 import styles from "./ButtonCharge.module.css"
-import styled from "styled-components";
-
-const btn = styled.button;
 
 interface ButtonChargePropsChildren{
     children: ReactNode;
