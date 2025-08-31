@@ -1,4 +1,5 @@
 import "./UserCard.Component.css";
+import { useState } from "react";
 
 type UserCardProps = {
     username?: string,
@@ -7,12 +8,16 @@ type UserCardProps = {
     profilePhoto: string
 }
 
-type ButtonFollow = {
-    text?: string
-}
-
 export function UserCard(props: UserCardProps){
+    const [isFollowing, setIsFollowing] = useState(false);
+    const handleClick = () => {
+        setIsFollowing(!isFollowing);
+    }
     const addAt = `@${props.username}`;
+    const text = isFollowing ? 'Siguiendo' : 'Seguir';
+    const buttonClassName = isFollowing 
+        ? 'tw-follower-card-button is-following'
+        : 'tw-follower-card-button'
     return (
         <article className="tw-follower-card">
             <header className="tw-follower-card-header">
@@ -33,20 +38,11 @@ export function UserCard(props: UserCardProps){
                 </div>
             </header>
             <aside>
-                {
-                    props.isFollowing 
-                    ? <ButtonFollow text="Dejar de seguir"/>
-                    : <ButtonFollow text="Seguir"/>
-                }
+                <button className={buttonClassName} onClick={handleClick}>
+                    <span className="tw-follower-card-text">{text}</span>
+                    <span className="tw-follower-card-stopFollow">Dejar de seguir</span>
+                </button>
             </aside>
         </article>
-    );
-}
-
-const ButtonFollow = (props: ButtonFollow) => {
-    return (
-        <button className="tw-follower-card-button">
-            {props.text}
-        </button>
     );
 }

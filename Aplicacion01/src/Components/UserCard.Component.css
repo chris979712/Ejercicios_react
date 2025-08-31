@@ -32,4 +32,39 @@
     border-radius: 999px;
     padding: 6px 16px;
     font-weight: bold;
+    width: 140px;
+}
+
+.tw-follower-card-button.is-following{
+    border: 1px solid #bbb;
+    background: transparent;
+    color: #fff;
+    width: 140px;
+}
+
+.tw-follower-card-button:hover{
+    background-color: #09f;
+    transition: .3s ease background-color;
+}
+
+.tw-follower-card-button.is-following:hover{
+    background-color: rgb(255,102,102);
+    color: red;
+    border: 1px solid red;
+    transition: .3s ease background-color;
+}
+
+.tw-follower-card-button.is-following:hover .tw-follower-card-stopFollow{
+    display: block;
+}
+.tw-follower-card-stopFollow{
+    display: none;
+}
+
+.tw-follower-card-text{
+    display: block;
+}
+
+.tw-follower-card-button.is-following:hover .tw-follower-card-text{
+    display: none;
 }
