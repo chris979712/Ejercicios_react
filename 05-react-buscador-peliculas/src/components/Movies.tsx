@@ -1,10 +1,4 @@
-type Movie = {
-    title?: string
-    year?: string
-    id?: string
-    type?: string
-    poster?: string 
-}
+import type { Movie } from "../classes/Movie"
 
 type ListOfMoviesProps = {
     Movies: Movie[]
@@ -13,13 +7,13 @@ type ListOfMoviesProps = {
 function ListOfMovies(props: ListOfMoviesProps) {
     const {Movies} = props;
     return (
-        <ul>
+        <ul className="movies">
             {
             Movies.map(movie => (
-                <li key={movie.id}>
-                <h3>{movie.title}</h3>
-                <p>{movie.year} - {movie.type}</p>
-                <img src={movie.poster} alt={movie.title} />
+                <li className="movie" key={movie.imdbID}>
+                <h3>{movie.Title}</h3>
+                <p>{movie.Year} - {movie.Type}</p>
+                <img src={movie.Poster} alt={movie.Title} />
                 </li>
             ))
             }
