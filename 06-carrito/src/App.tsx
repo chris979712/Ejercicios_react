@@ -1,36 +1,26 @@
-import { useState } from 'react'
+import {useState } from 'react'
 import './App.css'
 import { Products } from './components/products/Product'
 import {products as initialProducts} from './mocks/products.json'
-import type { Product } from './classes/ProductClass';
 import { Header } from './components/Header/Header';
+import { Footer } from './components/footer/Footer';
+import { useFilters } from './hooks/useFilters';
+import { ShopCar } from './components/cart/cart';
+import { CartProvider} from './context/cart';
+
 function App() {
   const [products] = useState(initialProducts);
-  const [filters, setFilters] = useState({
-    category: 'all',
-    minPrice: 0
-  })
-
-  const filterProducts = (products: Product[]) => {
-    return products.filter(product => {
-      return (
-        product.price >= filters.minPrice &&
-        (
-          filters.category === 'all' ||
-          filters.category === product.category
-        )
-      )
-    })
-  }
-
+  const {filterProducts} = useFilters();
   const filteredProducts = filterProducts(products);
 
 
   return (
-    <>
+    <CartProvider>
       <Header />
-      <Products products={products}/>
-    </>
+      <ShopCar />
+      <Products products={filteredProducts}/>
+      <Footer />
+    </CartProvider>
   )
 }
 

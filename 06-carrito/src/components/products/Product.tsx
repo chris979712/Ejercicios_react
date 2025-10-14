@@ -1,6 +1,7 @@
 import './Product.css'
 import { AddToCartIcon } from '../icon/Icon'
 import type { Product } from '../../classes/ProductClass'
+import { useCart } from '../../hooks/useCart'
 
 interface ProductProps{
     products: Product[];
@@ -8,6 +9,7 @@ interface ProductProps{
 
 export function Products(props: ProductProps){
     const {products} = props;
+    const {addToCart} = useCart();
     return (
         <main className='products'>
             <ul>
@@ -19,7 +21,7 @@ export function Products(props: ProductProps){
                                 <strong>{product.title}</strong>
                             </div>
                             <div>
-                                <button>
+                                <button onClick={() => addToCart(product)}>
                                     <AddToCartIcon />
                                 </button>
                             </div>
